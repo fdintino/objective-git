@@ -54,9 +54,9 @@
 	return [[self alloc] initWithFile:file inRepository:repository error:error];
 }
 
-- (id)initWithOid:(const git_oid *)oid inRepository:(GTRepository *)repository error:(NSError **)error {
+- (id)initWithOid:(const git_oid *)oid inRepository:(GTRepository *)repo error:(NSError **)error {
 	git_object *obj;
-    int gitError = git_object_lookup(&obj, repository.git_repository, oid, (git_otype) GTObjectTypeBlob);
+    int gitError = git_object_lookup(&obj, repo.git_repository, oid, (git_otype) GTObjectTypeBlob);
     if (gitError < GIT_OK) {
         if (error != NULL) {
             *error = [NSError git_errorFor:gitError withAdditionalDescription:@"Failed to lookup blob"];
@@ -64,17 +64,17 @@
         return nil;
     }
 	
-    return [self initWithObj:obj inRepository:repository];
+    return [self initWithObj:obj inRepository:repo];
 }
 
-- (id)initWithString:(NSString *)string inRepository:(GTRepository *)repository error:(NSError **)error {
+- (id)initWithString:(NSString *)string inRepository:(GTRepository *)repo error:(NSError **)error {
 	NSData *data = [string dataUsingEncoding:NSUTF8StringEncoding];
-    return [self initWithData:data inRepository:repository error:error];
+    return [self initWithData:data inRepository:repo error:error];
 }
 
-- (id)initWithData:(NSData *)data inRepository:(GTRepository *)repository error:(NSError **)error {
+- (id)initWithData:(NSData *)data inRepository:(GTRepository *)repo error:(NSError **)error {
 	git_oid oid;
-	int gitError = git_blob_create_frombuffer(&oid, repository.git_repository, [data bytes], data.length);
+	int gitError = git_blob_create_frombuffer(&oid, repo.git_repository, [data bytes], data.length);
 	if(gitError < GIT_OK) {
 		if(error != NULL) {
 			*error = [NSError git_errorFor:gitError withAdditionalDescription:@"Failed to create blob from NSData"];
@@ -82,12 +82,12 @@
 		return nil;
 	}
     
-    return [self initWithOid:&oid inRepository:repository error:error];
+    return [self initWithOid:&oid inRepository:repo error:error];
 }
 
-- (id)initWithFile:(NSURL *)file inRepository:(GTRepository *)repository error:(NSError **)error {
+- (id)initWithFile:(NSURL *)file inRepository:(GTRepository *)repo error:(NSError **)error {
 	git_oid oid;
-	int gitError = git_blob_create_fromfile(&oid, repository.git_repository, [[file path] UTF8String]);
+	int gitError = git_blob_create_fromfile(&oid, repo.git_repository, [[file path] UTF8String]);
 	if(gitError < GIT_OK) {
 		if(error != NULL) {
 			*error = [NSError git_errorFor:gitError withAdditionalDescription:@"Failed to create blob from NSURL"];
@@ -95,7 +95,7 @@
 		return nil;
 	}
 	
-    return [self initWithOid:&oid inRepository:repository error:error];
+    return [self initWithOid:&oid inRepository:repo error:error];
 }
 
 - (git_blob *)git_blob {	
