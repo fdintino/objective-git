@@ -10,6 +10,9 @@
 
 
 @interface GTConfiguration : NSObject
+{
+    git_config *git_config;
+}
 
 @property (nonatomic, readonly, assign) git_config *git_config;
 

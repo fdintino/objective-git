@@ -31,7 +31,13 @@
 #import "GTObject.h"
 
 
-@interface GTSignature : NSObject {}
+@interface GTSignature : NSObject
+{
+    git_signature *git_signature;
+    NSString *name;
+    NSString *email;
+    NSDate *time;
+}
 
 @property (nonatomic, assign) git_signature *git_signature;
 @property (nonatomic, copy) NSString *name;

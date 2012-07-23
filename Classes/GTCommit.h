@@ -34,7 +34,12 @@
 @class GTTree;
 
 
-@interface GTCommit : GTObject {}
+@interface GTCommit : GTObject
+{
+    GTSignature *author;
+    GTSignature *committer;
+    NSArray *parents;
+}
 
 @property (nonatomic, readonly) git_commit *git_commit;
 @property (nonatomic, readonly, strong) GTSignature *author;

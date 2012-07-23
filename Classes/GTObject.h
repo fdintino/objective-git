@@ -52,7 +52,11 @@ typedef enum {
 
 @end
 
-@interface GTObject : NSObject <GTObject> {}
+@interface GTObject : NSObject <GTObject>
+{
+    GTRepository *repository;
+    git_object *git_object;
+}
 
 @property (nonatomic, readonly) git_object *git_object;
 @property (nonatomic, readonly) NSString *type;

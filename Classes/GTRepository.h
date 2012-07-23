@@ -58,7 +58,16 @@ typedef unsigned int GTRepositoryFileStatus;
 typedef void (^GTRepositoryStatusBlock)(NSURL *fileURL, GTRepositoryFileStatus status, BOOL *stop);
 
 
-@interface GTRepository : NSObject <GTObject> {}
+@interface GTRepository : NSObject <GTObject>
+{
+    git_repository *git_repository;
+    NSURL *fileURL;
+    GTEnumerator *enumerator;
+    GTIndex *index;
+    GTObjectDatabase *objectDatabase;
+    NSMutableSet *weakEnumerators;
+    GTConfiguration *configuration;
+}
 
 @property (nonatomic, assign, readonly) git_repository *git_repository;
 // The file URL for the repository's working directory.

@@ -47,7 +47,12 @@ typedef unsigned int GTEnumeratorOptions;
 // This object is usually used from within a repository. You generally don't 
 // need to instantiate a GTEnumerator. Instead, use the enumerator property on 
 // GTRepository
-@interface GTEnumerator : NSEnumerator <GTObject> {}
+@interface GTEnumerator : NSEnumerator <GTObject>
+{
+    GTRepository *repository;
+    git_revwalk *walk;
+    GTEnumeratorOptions options;
+}
 
 @property (nonatomic, unsafe_unretained) GTRepository *repository;
 @property (nonatomic, assign) GTEnumeratorOptions options;

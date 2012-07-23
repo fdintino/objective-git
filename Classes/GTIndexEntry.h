@@ -38,7 +38,23 @@ typedef enum {
 } GTIndexEntryStatus;
 
 
-@interface GTIndexEntry : NSObject <GTObject> {}
+@interface GTIndexEntry : NSObject <GTObject>
+{
+    git_index_entry *git_index_entry;
+    NSString *path;
+    NSDate *modificationDate;
+    NSDate *creationDate;
+    long long fileSize;
+    NSUInteger dev;
+    NSUInteger ino;
+    NSUInteger mode;
+    NSUInteger uid;
+    NSUInteger gid;
+    NSUInteger flags;
+    NSUInteger staged;
+    BOOL valid;
+    GTRepository *repository;
+}
 
 @property (nonatomic, assign) git_index_entry *git_index_entry;
 @property (nonatomic, copy) NSString *path;

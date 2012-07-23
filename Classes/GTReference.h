@@ -40,7 +40,11 @@ typedef enum {
 @class GTRepository;
 
 
-@interface GTReference : NSObject <GTObject> {}
+@interface GTReference : NSObject <GTObject>
+{
+    git_reference *git_reference;
+    GTRepository *repository;
+}
 
 @property (nonatomic, assign) git_reference *git_reference;
 @property (nonatomic, unsafe_unretained) GTRepository *repository;

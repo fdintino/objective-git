@@ -32,7 +32,11 @@
 @class GTIndexEntry;
 
 
-@interface GTIndex : NSObject {}
+@interface GTIndex : NSObject
+{
+    git_index *git_index;
+    NSURL *fileURL;
+}
 
 @property (nonatomic, assign) git_index *git_index;
 @property (nonatomic, copy) NSURL *fileURL;

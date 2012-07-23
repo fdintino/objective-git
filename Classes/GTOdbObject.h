@@ -10,7 +10,10 @@
 #import "GTObject.h"
 
 
-@interface GTOdbObject : NSObject {}
+@interface GTOdbObject : NSObject
+{
+    git_odb_object *git_odb_object;
+}
 
 @property (nonatomic, assign, readonly) git_odb_object *git_odb_object;
 
