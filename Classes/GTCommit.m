@@ -125,7 +125,7 @@
 }
 
 - (NSDate *)commitDate {
-	time_t t = git_commit_time(self.git_commit);
+	NSTimeInterval t = git_commit_time(self.git_commit);
 	return [NSDate dateWithTimeIntervalSince1970:t];
 }
 

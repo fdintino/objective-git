@@ -72,7 +72,7 @@
 	return [NSString stringWithUTF8String:git_tree_entry_name(self.git_tree_entry)];
 }
 
-- (NSInteger)attributes {
+- (NSUInteger)attributes {
 	return git_tree_entry_attributes(self.git_tree_entry);
 }
 

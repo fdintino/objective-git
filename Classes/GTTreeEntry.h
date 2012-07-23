@@ -45,7 +45,7 @@
 + (id)entryWithEntry:(const git_tree_entry *)theEntry parentTree:(GTTree *)parent;
 
 - (NSString *)name;
-- (NSInteger)attributes;
+- (NSUInteger)attributes;
 - (NSString *)sha;
 
 // Turn entry into an GTObject
