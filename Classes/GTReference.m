@@ -58,6 +58,10 @@
 	return [[self alloc] initByResolvingSymbolicReference:symbolicRef error:error];
 }
 
++ (NSError *)invalidReferenceError {
+	return [NSError git_errorFor:GTReferenceErrorCodeInvalidReference withAdditionalDescription:@"Invalid git_reference."];
+}
+
 - (id)initByLookingUpReferenceNamed:(NSString *)refName inRepository:(GTRepository *)theRepo error:(NSError **)error {
 	if((self = [super init])) {
 		self.repository = theRepo;
@@ -245,8 +249,5 @@
 	return self.git_reference != NULL;
 }
 
-+ (NSError *)invalidReferenceError {
-	return [NSError git_errorFor:GTReferenceErrorCodeInvalidReference withAdditionalDescription:@"Invalid git_reference."];
-}
 
 @end
